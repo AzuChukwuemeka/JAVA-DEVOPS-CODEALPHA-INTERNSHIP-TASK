@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.devops.app.controller.TaskModelTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2026-05-30T08:17:05" hostname="vm" time="0.015">
+  <properties/>
+  <testcase name="toString_containsKeyInfo" classname="com.devops.app.controller.TaskModelTest" time="0.001"/>
+  <testcase name="eachTask_hasUniqueId" classname="com.devops.app.controller.TaskModelTest" time="0.001"/>
+  <testcase name="markComplete_setsStatusAndTimestamp" classname="com.devops.app.controller.TaskModelTest" time="0.0"/>
+  <testcase name="newTask_isInitiallyPending" classname="com.devops.app.controller.TaskModelTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

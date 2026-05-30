@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - Class com.devops.app.service.TaskServiceTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>Class com.devops.app.service.TaskServiceTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/com.devops.app.service.html">com.devops.app.service</a> &gt; TaskServiceTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">16</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.613s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">addTask_acceptsCaseInsensitivePriority</td>
+<td>0.010s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">addTask_createsTaskWithCorrectFields</td>
+<td>0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">addTask_taskIsRetrievableById</td>
+<td>0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">addTask_throwsOnBlankTitle</td>
+<td>0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">addTask_throwsOnInvalidPriority</td>
+<td>0.006s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">addTask_throwsOnNullTitle</td>
+<td>0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">completeTask_setsStatusToDoneAndRecordsTimestamp</td>
+<td>0.535s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">completeTask_throwsIfAlreadyCompleted</td>
+<td>0.025s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">completeTask_throwsIfNotFound</td>
+<td>0s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">deleteTask_removesTaskFromRepository</td>
+<td>0.001s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">deleteTask_throwsIfNotFound</td>
+<td>0.004s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">getCompletedTasks_returnsOnlyCompletedTasks</td>
+<td>0.007s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">getPendingTasks_returnsOnlyPendingTasks</td>
+<td>0.005s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">getTasksByPriority_filtersCorrectly</td>
+<td>0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">getTotalCount_returnsCorrectCount</td>
+<td>0.002s</td>
+<td class="success">passed</td>
+</tr>
+<tr>
+<td class="success">updatePriority_changesPrioritySuccessfully</td>
+<td>0.004s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>08:17:05.390 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='DE47640E', title='Run CI pipeline', priority='HIGH', status='PENDING'}
+08:17:05.398 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Run CI pipeline
+08:17:05.417 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='7316C7F6', title='Done A', priority='HIGH', status='PENDING'}
+08:17:05.418 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='DBAAB007', title='Not done', priority='LOW', status='PENDING'}
+08:17:05.418 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Done A
+08:17:05.432 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='0ECECE79', title='High task 1', priority='HIGH', status='PENDING'}
+08:17:05.432 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='55867A3D', title='High task 2', priority='HIGH', status='PENDING'}
+08:17:05.433 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='BF8DC5CB', title='Low task', priority='LOW', status='PENDING'}
+08:17:05.435 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='34D38928', title='Write tests', priority='MEDIUM', status='PENDING'}
+08:17:05.445 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='2066ABFB', title='Refactor code', priority='LOW', status='PENDING'}
+08:17:05.451 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='17961710', title='Already done', priority='LOW', status='PENDING'}
+08:17:05.452 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Already done
+08:17:05.480 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='8E5090CB', title='Task A', priority='HIGH', status='PENDING'}
+08:17:05.484 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='11DC80D4', title='Task B', priority='MEDIUM', status='PENDING'}
+08:17:05.485 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='C15EE32F', title='Task C', priority='LOW', status='PENDING'}
+08:17:05.485 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='FC9D939D', title='Task D', priority='HIGH', status='PENDING'}
+08:17:05.490 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='67F99593', title='Task A', priority='HIGH', status='PENDING'}
+08:17:05.493 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='EF170FC8', title='Task B', priority='LOW', status='PENDING'}
+08:17:05.494 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='2CA21773', title='Task C', priority='MEDIUM', status='PENDING'}
+08:17:05.494 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Task C
+08:17:05.503 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='19EF2CDE', title='Deploy to production', priority='HIGH', status='PENDING'}
+08:17:05.510 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='4FC26A5C', title='T1', priority='HIGH', status='PENDING'}
+08:17:05.510 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='B95A7870', title='T2', priority='LOW', status='PENDING'}
+08:17:05.511 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='9E664970', title='Temporary task', priority='LOW', status='PENDING'}
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 4.4.1</a> at May 30, 2026, 8:17:05 AM</p>
+</div>
+</div>
+</body>
+</html>

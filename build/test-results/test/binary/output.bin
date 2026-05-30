@@ -1,0 +1,24 @@
+¢08:17:05.390 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='DE47640E', title='Run CI pipeline', priority='HIGH', status='PENDING'}
+f08:17:05.398 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Run CI pipeline
+™08:17:05.417 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='7316C7F6', title='Done A', priority='HIGH', status='PENDING'}
+š08:17:05.418 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='DBAAB007', title='Not done', priority='LOW', status='PENDING'}
+]08:17:05.418 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Done A
+ž08:17:05.432 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='0ECECE79', title='High task 1', priority='HIGH', status='PENDING'}
+ž08:17:05.432 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='55867A3D', title='High task 2', priority='HIGH', status='PENDING'}
+š08:17:05.433 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='BF8DC5CB', title='Low task', priority='LOW', status='PENDING'}
+ 08:17:05.435 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='34D38928', title='Write tests', priority='MEDIUM', status='PENDING'}
+Ÿ08:17:05.445 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='2066ABFB', title='Refactor code', priority='LOW', status='PENDING'}
+	ž08:17:05.451 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='17961710', title='Already done', priority='LOW', status='PENDING'}
+	c08:17:05.452 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Already done
+™08:17:05.480 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='8E5090CB', title='Task A', priority='HIGH', status='PENDING'}
+›08:17:05.484 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='11DC80D4', title='Task B', priority='MEDIUM', status='PENDING'}
+˜08:17:05.485 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='C15EE32F', title='Task C', priority='LOW', status='PENDING'}
+™08:17:05.485 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='FC9D939D', title='Task D', priority='HIGH', status='PENDING'}
+™08:17:05.490 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='67F99593', title='Task A', priority='HIGH', status='PENDING'}
+˜08:17:05.493 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='EF170FC8', title='Task B', priority='LOW', status='PENDING'}
+›08:17:05.494 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='2CA21773', title='Task C', priority='MEDIUM', status='PENDING'}
+]08:17:05.494 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Task C
+§08:17:05.503 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='19EF2CDE', title='Deploy to production', priority='HIGH', status='PENDING'}
+•08:17:05.510 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='4FC26A5C', title='T1', priority='HIGH', status='PENDING'}
+”08:17:05.510 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='B95A7870', title='T2', priority='LOW', status='PENDING'}
+ 08:17:05.511 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='9E664970', title='Temporary task', priority='LOW', status='PENDING'}

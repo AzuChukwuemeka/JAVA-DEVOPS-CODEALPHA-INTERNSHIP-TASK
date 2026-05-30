@@ -1,0 +1,136 @@
+// =============================================================================
+// build.gradle — java-devops-project
+// Gradle build script demonstrating:
+//   1. Build automation with custom DevOps tasks
+//   2. Dependency management (compile vs test scopes)
+//   3. Fat JAR packaging for deployment
+//   4. Build metadata generation
+// =============================================================================
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+group   = 'com.devops'
+version = '1.0.0'
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+mainClassName = 'com.devops.app.Application'
+
+// ---------------------------------------------------------------------------
+// Dependencies
+// In a real project these would be pulled from Maven Central or a private
+// Nexus/Artifactory repository. Here we reference the system JARs installed
+// on this machine so the build works without network access.
+// ---------------------------------------------------------------------------
+dependencies {
+    // ── Production runtime ─────────────────────────────────────────────────
+    compile files(
+        '/usr/share/java/slf4j-api.jar',         // Logging facade
+        '/usr/share/java/logback-classic.jar',   // SLF4J implementation
+        '/usr/share/java/logback-core.jar',
+        '/usr/share/java/guava.jar',             // Google core libraries
+        '/usr/share/java/commons-lang3.jar',     // Apache Commons utilities
+        '/usr/share/java/jackson-databind.jar',  // JSON serialisation
+        '/usr/share/java/jackson-core.jar',
+        '/usr/share/java/jackson-annotations.jar'
+    )
+
+    // ── Test ───────────────────────────────────────────────────────────────
+    testCompile files(
+        '/usr/share/java/junit4.jar',       // JUnit 4 test runner
+        '/usr/share/java/hamcrest-core.jar' // Assertion matchers
+    )
+}
+
+// ---------------------------------------------------------------------------
+// Test configuration
+// ---------------------------------------------------------------------------
+test {
+    testLogging {
+        events 'passed', 'skipped', 'failed'
+        showStandardStreams = true
+    }
+}
+
+// ---------------------------------------------------------------------------
+// JAR manifest — embeds version and build info into the JAR header
+// ---------------------------------------------------------------------------
+jar {
+    manifest {
+        attributes(
+            'Main-Class'             : mainClassName,
+            'Implementation-Title'   : project.name,
+            'Implementation-Version' : project.version,
+            'Built-By'               : 'Gradle DevOps Pipeline',
+            'Build-Jdk'              : System.getProperty('java.version')
+        )
+    }
+}
+
+// ===========================================================================
+// Custom DevOps Tasks
+// ===========================================================================
+
+// Task 1: Fat (uber) JAR — packages the app + all dependencies into one JAR
+//         so it can be deployed to any server without extra classpath setup.
+task fatJar(type: Jar) {
+    group       = 'DevOps'
+    description = 'Packages the application and all runtime dependencies into a single executable JAR'
+    classifier  = 'all'
+    manifest { attributes 'Main-Class': mainClassName }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    doLast { println "Fat JAR -> ${archivePath}" }
+}
+
+// Task 2: Dependency report — lists every resolved compile-time dependency.
+//         Useful for auditing and licence checks in a CI pipeline.
+task printDependencies {
+    group       = 'DevOps'
+    description = 'Prints all resolved compile-time dependencies to stdout'
+    doLast {
+        println "\n=== Compile Dependencies ==="
+        configurations.compile.files.each { file ->
+            println "  [DEP] ${file.name}"
+        }
+        println "=== End of dependency list ===\n"
+    }
+}
+
+// Task 3: Build-info file — writes a properties file consumed by health-check
+//         endpoints or deployment scripts to record what was deployed and when.
+task generateBuildInfo {
+    group       = 'DevOps'
+    description = 'Writes build metadata (version, timestamp, JDK) to build/build-info.properties'
+    doLast {
+        def f = file("${buildDir}/build-info.properties")
+        f.parentFile.mkdirs()
+        f.text = [
+            "build.version=${project.version}",
+            "build.timestamp=${new Date().format('yyyy-MM-dd HH:mm:ss')}",
+            "build.java.version=${System.getProperty('java.version')}",
+            "build.gradle.version=${gradle.gradleVersion}",
+            "build.group=${project.group}"
+        ].join('\n') + '\n'
+        println "Build info written -> ${f.absolutePath}"
+    }
+}
+
+// Auto-generate the build-info file every time the project is assembled.
+assemble.finalizedBy generateBuildInfo
+
+// Task 4: End-to-end pipeline shortcut — mirrors what the CI server does:
+//         clean workspace -> compile -> test -> package.
+task cleanBuildDeploy {
+    group       = 'DevOps'
+    description = 'Convenience task: clean -> compile -> test -> assemble (mirrors CI pipeline)'
+    dependsOn clean, build
+    build.mustRunAfter clean
+    doLast {
+        println "\n✅  Full build pipeline completed — version ${project.version}"
+    }
+}
