@@ -72,7 +72,10 @@ jacocoTestCoverageVerification {
     violationRules {
         rule {
             element = 'CLASS'
-            excludes = ['**/Application.class']
+            
+            excludes = [
+                'com.devops.app.Application'
+            ]
             
             limit {
                 minimum = 0.70
