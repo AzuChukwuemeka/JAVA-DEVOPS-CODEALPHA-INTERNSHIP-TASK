@@ -105,15 +105,21 @@ jar {
 task fatJar(type: Jar) {
     group       = 'DevOps'
     description = 'Packages the application and all runtime dependencies into a single executable JAR'
-    classifier  = 'all'
+    archiveClassifier = 'all'
     manifest { attributes 'Main-Class': mainClassName }
     from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
     with jar
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    doLast { println "Fat JAR -> ${archivePath}" }
+    doLast { println "Fat JAR -> ${archiveFile.get().asFile.absolutePath}" }
 }
+
+// Ensure fatJar runs after jar task
+fatJar.dependsOn jar
+
+// Make build task depend on fatJar
+build.dependsOn fatJar
 
 // Task 2: Dependency report — lists every resolved compile-time dependency.
 //         Useful for auditing and licence checks in a CI pipeline.
@@ -122,7 +128,7 @@ task printDependencies {
     description = 'Prints all resolved compile-time dependencies to stdout'
     doLast {
         println "\n=== Compile Dependencies ==="
-        configurations.compile.files.each { file ->
+        configurations.runtimeClasspath.files.each { file ->
             println "  [DEP] ${file.name}"
         }
         println "=== End of dependency list ===\n"

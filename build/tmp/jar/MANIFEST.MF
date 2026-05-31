@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Main-Class: com.devops.app.Application
+Implementation-Title: java-devops-project
+Implementation-Version: 1.0.0
+Built-By: Gradle DevOps Pipeline
+Build-Jdk: 20
+

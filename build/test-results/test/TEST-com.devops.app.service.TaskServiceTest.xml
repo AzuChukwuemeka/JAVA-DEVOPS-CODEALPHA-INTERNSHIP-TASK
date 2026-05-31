@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.devops.app.service.TaskServiceTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2026-05-30T08:17:04" hostname="vm" time="0.638">
+<testsuite name="com.devops.app.service.TaskServiceTest" tests="16" skipped="0" failures="0" errors="0" timestamp="2026-05-31T07:03:41" hostname="CODE" time="1.735">
   <properties/>
-  <testcase name="completeTask_setsStatusToDoneAndRecordsTimestamp" classname="com.devops.app.service.TaskServiceTest" time="0.535"/>
-  <testcase name="deleteTask_throwsIfNotFound" classname="com.devops.app.service.TaskServiceTest" time="0.004"/>
+  <testcase name="completeTask_setsStatusToDoneAndRecordsTimestamp" classname="com.devops.app.service.TaskServiceTest" time="1.585"/>
+  <testcase name="deleteTask_throwsIfNotFound" classname="com.devops.app.service.TaskServiceTest" time="0.012"/>
   <testcase name="getCompletedTasks_returnsOnlyCompletedTasks" classname="com.devops.app.service.TaskServiceTest" time="0.007"/>
-  <testcase name="getTasksByPriority_filtersCorrectly" classname="com.devops.app.service.TaskServiceTest" time="0.002"/>
-  <testcase name="addTask_taskIsRetrievableById" classname="com.devops.app.service.TaskServiceTest" time="0.005"/>
-  <testcase name="updatePriority_changesPrioritySuccessfully" classname="com.devops.app.service.TaskServiceTest" time="0.004"/>
-  <testcase name="addTask_throwsOnInvalidPriority" classname="com.devops.app.service.TaskServiceTest" time="0.006"/>
-  <testcase name="completeTask_throwsIfAlreadyCompleted" classname="com.devops.app.service.TaskServiceTest" time="0.025"/>
-  <testcase name="addTask_throwsOnBlankTitle" classname="com.devops.app.service.TaskServiceTest" time="0.001"/>
-  <testcase name="addTask_acceptsCaseInsensitivePriority" classname="com.devops.app.service.TaskServiceTest" time="0.01"/>
-  <testcase name="getPendingTasks_returnsOnlyPendingTasks" classname="com.devops.app.service.TaskServiceTest" time="0.005"/>
-  <testcase name="completeTask_throwsIfNotFound" classname="com.devops.app.service.TaskServiceTest" time="0.0"/>
-  <testcase name="addTask_createsTaskWithCorrectFields" classname="com.devops.app.service.TaskServiceTest" time="0.006"/>
-  <testcase name="getTotalCount_returnsCorrectCount" classname="com.devops.app.service.TaskServiceTest" time="0.002"/>
-  <testcase name="deleteTask_removesTaskFromRepository" classname="com.devops.app.service.TaskServiceTest" time="0.001"/>
-  <testcase name="addTask_throwsOnNullTitle" classname="com.devops.app.service.TaskServiceTest" time="0.0"/>
-  <system-out><![CDATA[08:17:05.390 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='DE47640E', title='Run CI pipeline', priority='HIGH', status='PENDING'}
-08:17:05.398 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Run CI pipeline
-08:17:05.417 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='7316C7F6', title='Done A', priority='HIGH', status='PENDING'}
-08:17:05.418 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='DBAAB007', title='Not done', priority='LOW', status='PENDING'}
-08:17:05.418 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Done A
-08:17:05.432 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='0ECECE79', title='High task 1', priority='HIGH', status='PENDING'}
-08:17:05.432 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='55867A3D', title='High task 2', priority='HIGH', status='PENDING'}
-08:17:05.433 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='BF8DC5CB', title='Low task', priority='LOW', status='PENDING'}
-08:17:05.435 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='34D38928', title='Write tests', priority='MEDIUM', status='PENDING'}
-08:17:05.445 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='2066ABFB', title='Refactor code', priority='LOW', status='PENDING'}
-08:17:05.451 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='17961710', title='Already done', priority='LOW', status='PENDING'}
-08:17:05.452 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Already done
-08:17:05.480 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='8E5090CB', title='Task A', priority='HIGH', status='PENDING'}
-08:17:05.484 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='11DC80D4', title='Task B', priority='MEDIUM', status='PENDING'}
-08:17:05.485 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='C15EE32F', title='Task C', priority='LOW', status='PENDING'}
-08:17:05.485 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='FC9D939D', title='Task D', priority='HIGH', status='PENDING'}
-08:17:05.490 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='67F99593', title='Task A', priority='HIGH', status='PENDING'}
-08:17:05.493 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='EF170FC8', title='Task B', priority='LOW', status='PENDING'}
-08:17:05.494 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='2CA21773', title='Task C', priority='MEDIUM', status='PENDING'}
-08:17:05.494 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Task C
-08:17:05.503 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='19EF2CDE', title='Deploy to production', priority='HIGH', status='PENDING'}
-08:17:05.510 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='4FC26A5C', title='T1', priority='HIGH', status='PENDING'}
-08:17:05.510 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='B95A7870', title='T2', priority='LOW', status='PENDING'}
-08:17:05.511 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='9E664970', title='Temporary task', priority='LOW', status='PENDING'}
+  <testcase name="getTasksByPriority_filtersCorrectly" classname="com.devops.app.service.TaskServiceTest" time="0.007"/>
+  <testcase name="addTask_taskIsRetrievableById" classname="com.devops.app.service.TaskServiceTest" time="0.003"/>
+  <testcase name="updatePriority_changesPrioritySuccessfully" classname="com.devops.app.service.TaskServiceTest" time="0.002"/>
+  <testcase name="addTask_throwsOnInvalidPriority" classname="com.devops.app.service.TaskServiceTest" time="0.001"/>
+  <testcase name="completeTask_throwsIfAlreadyCompleted" classname="com.devops.app.service.TaskServiceTest" time="0.005"/>
+  <testcase name="addTask_throwsOnBlankTitle" classname="com.devops.app.service.TaskServiceTest" time="0.0"/>
+  <testcase name="addTask_acceptsCaseInsensitivePriority" classname="com.devops.app.service.TaskServiceTest" time="0.067"/>
+  <testcase name="getPendingTasks_returnsOnlyPendingTasks" classname="com.devops.app.service.TaskServiceTest" time="0.018"/>
+  <testcase name="completeTask_throwsIfNotFound" classname="com.devops.app.service.TaskServiceTest" time="0.001"/>
+  <testcase name="addTask_createsTaskWithCorrectFields" classname="com.devops.app.service.TaskServiceTest" time="0.004"/>
+  <testcase name="getTotalCount_returnsCorrectCount" classname="com.devops.app.service.TaskServiceTest" time="0.01"/>
+  <testcase name="deleteTask_removesTaskFromRepository" classname="com.devops.app.service.TaskServiceTest" time="0.003"/>
+  <testcase name="addTask_throwsOnNullTitle" classname="com.devops.app.service.TaskServiceTest" time="0.001"/>
+  <system-out><![CDATA[08:03:42.839 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='41165531', title='Run CI pipeline', priority='HIGH', status='PENDING'}
+08:03:42.934 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Run CI pipeline
+08:03:42.954 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='1BCC3572', title='Done A', priority='HIGH', status='PENDING'}
+08:03:42.955 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='F7ABE12C', title='Not done', priority='LOW', status='PENDING'}
+08:03:42.957 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Done A
+08:03:42.961 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='8F893CA9', title='High task 1', priority='HIGH', status='PENDING'}
+08:03:42.964 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='72E9E5B8', title='High task 2', priority='HIGH', status='PENDING'}
+08:03:42.965 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='02A6744A', title='Low task', priority='LOW', status='PENDING'}
+08:03:42.967 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='1C254001', title='Write tests', priority='MEDIUM', status='PENDING'}
+08:03:42.970 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='0B2D119D', title='Refactor code', priority='LOW', status='PENDING'}
+08:03:42.974 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='72BDBCDE', title='Already done', priority='LOW', status='PENDING'}
+08:03:42.975 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Already done
+08:03:42.979 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='71C9DE58', title='Task A', priority='HIGH', status='PENDING'}
+08:03:42.980 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='4F6F997E', title='Task B', priority='MEDIUM', status='PENDING'}
+08:03:43.036 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='E0A5D7D6', title='Task C', priority='LOW', status='PENDING'}
+08:03:43.042 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='D31E453D', title='Task D', priority='HIGH', status='PENDING'}
+08:03:43.049 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='D1B93817', title='Task A', priority='HIGH', status='PENDING'}
+08:03:43.056 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='78F5566E', title='Task B', priority='LOW', status='PENDING'}
+08:03:43.059 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='9BE88478', title='Task C', priority='MEDIUM', status='PENDING'}
+08:03:43.062 [Test worker] INFO  com.devops.app.service.TaskService - Task completed: Task C
+08:03:43.070 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='B49A3217', title='Deploy to production', priority='HIGH', status='PENDING'}
+08:03:43.076 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='AAFEE11F', title='T1', priority='HIGH', status='PENDING'}
+08:03:43.078 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='142AE86E', title='T2', priority='LOW', status='PENDING'}
+08:03:43.087 [Test worker] DEBUG com.devops.app.service.TaskService - Added task: Task{id='A498519B', title='Temporary task', priority='LOW', status='PENDING'}
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TaskService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java-devops-project</a> &gt; <a href="index.source.html" class="el_package">com.devops.app.service</a> &gt; <span class="el_source">TaskService.java</span></div><h1>TaskService.java</h1><pre class="source lang-java linenums">package com.devops.app.service;
+
+import com.devops.app.model.Task;
+import com.devops.app.repository.InMemoryTaskRepository;
+import com.devops.app.repository.TaskRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * Service layer for Task management.
+ * Contains all business logic for creating, updating, and querying tasks.
+ */
+public class TaskService {
+
+<span class="fc" id="L18">    private static final Logger logger = LoggerFactory.getLogger(TaskService.class);</span>
+
+    private final TaskRepository repository;
+
+<span class="fc" id="L22">    public TaskService() {</span>
+<span class="fc" id="L23">        this.repository = new InMemoryTaskRepository();</span>
+<span class="fc" id="L24">    }</span>
+
+    // Constructor injection for testability
+<span class="nc" id="L27">    public TaskService(TaskRepository repository) {</span>
+<span class="nc" id="L28">        this.repository = repository;</span>
+<span class="nc" id="L29">    }</span>
+
+    /**
+     * Creates and persists a new task.
+     */
+    public Task addTask(String title, String priority) {
+<span class="fc" id="L35">        validatePriority(priority);</span>
+<span class="fc bfc" id="L36" title="All 4 branches covered.">        if (title == null || title.isBlank()) {</span>
+<span class="fc" id="L37">            throw new IllegalArgumentException(&quot;Task title must not be blank&quot;);</span>
+        }
+<span class="fc" id="L39">        Task task = new Task(title.trim(), priority.toUpperCase());</span>
+<span class="fc" id="L40">        repository.save(task);</span>
+<span class="fc" id="L41">        logger.debug(&quot;Added task: {}&quot;, task);</span>
+<span class="fc" id="L42">        return task;</span>
+    }
+
+    /**
+     * Marks a task as completed by its ID.
+     */
+    public Task completeTask(String id) {
+<span class="fc" id="L49">        Task task = findOrThrow(id);</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (task.isCompleted()) {</span>
+<span class="fc" id="L51">            throw new IllegalStateException(&quot;Task &quot; + id + &quot; is already completed&quot;);</span>
+        }
+<span class="fc" id="L53">        task.markComplete();</span>
+<span class="fc" id="L54">        repository.save(task);</span>
+<span class="fc" id="L55">        logger.info(&quot;Task completed: {}&quot;, task.getTitle());</span>
+<span class="fc" id="L56">        return task;</span>
+    }
+
+    /**
+     * Updates the priority of a task.
+     */
+    public Task updatePriority(String id, String newPriority) {
+<span class="fc" id="L63">        validatePriority(newPriority);</span>
+<span class="fc" id="L64">        Task task = findOrThrow(id);</span>
+<span class="fc" id="L65">        task.setPriority(newPriority.toUpperCase());</span>
+<span class="fc" id="L66">        repository.save(task);</span>
+<span class="fc" id="L67">        return task;</span>
+    }
+
+    /**
+     * Deletes a task by ID.
+     */
+    public boolean deleteTask(String id) {
+<span class="fc" id="L74">        findOrThrow(id);</span>
+<span class="fc" id="L75">        return repository.deleteById(id);</span>
+    }
+
+    public Optional&lt;Task&gt; findById(String id) {
+<span class="fc" id="L79">        return repository.findById(id);</span>
+    }
+
+    public List&lt;Task&gt; getAllTasks() {
+<span class="nc" id="L83">        return repository.findAll();</span>
+    }
+
+    public List&lt;Task&gt; getPendingTasks() {
+<span class="fc" id="L87">        return repository.findByStatus(&quot;PENDING&quot;);</span>
+    }
+
+    public List&lt;Task&gt; getCompletedTasks() {
+<span class="fc" id="L91">        return repository.findByStatus(&quot;DONE&quot;);</span>
+    }
+
+    public List&lt;Task&gt; getTasksByPriority(String priority) {
+<span class="fc" id="L95">        validatePriority(priority);</span>
+<span class="fc" id="L96">        return repository.findByPriority(priority.toUpperCase());</span>
+    }
+
+    public int getTotalCount() {
+<span class="fc" id="L100">        return repository.count();</span>
+    }
+
+    // --- Private helpers ---
+
+    private Task findOrThrow(String id) {
+<span class="fc" id="L106">        return repository.findById(id)</span>
+<span class="fc" id="L107">                .orElseThrow(() -&gt; new IllegalArgumentException(&quot;Task not found: &quot; + id));</span>
+    }
+
+    private void validatePriority(String priority) {
+<span class="pc bpc" id="L111" title="1 of 4 branches missed.">        if (priority == null || !List.of(&quot;HIGH&quot;, &quot;MEDIUM&quot;, &quot;LOW&quot;).contains(priority.toUpperCase())) {</span>
+<span class="fc" id="L112">            throw new IllegalArgumentException(&quot;Priority must be HIGH, MEDIUM, or LOW. Got: &quot; + priority);</span>
+        }
+<span class="fc" id="L114">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>

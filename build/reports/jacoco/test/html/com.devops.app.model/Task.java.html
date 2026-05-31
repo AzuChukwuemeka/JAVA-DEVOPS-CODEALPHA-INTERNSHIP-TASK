@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Task.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java-devops-project</a> &gt; <a href="index.source.html" class="el_package">com.devops.app.model</a> &gt; <span class="el_source">Task.java</span></div><h1>Task.java</h1><pre class="source lang-java linenums">package com.devops.app.model;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+/**
+ * Represents a DevOps task in the task management system.
+ */
+public class Task {
+
+    private final String id;
+    private String title;
+    private String priority;   // HIGH, MEDIUM, LOW
+    private String status;     // PENDING, IN_PROGRESS, DONE
+    private final LocalDateTime createdAt;
+    private LocalDateTime completedAt;
+
+<span class="fc" id="L18">    public Task(String title, String priority) {</span>
+<span class="fc" id="L19">        this.id = UUID.randomUUID().toString().substring(0, 8).toUpperCase();</span>
+<span class="fc" id="L20">        this.title = title;</span>
+<span class="fc" id="L21">        this.priority = priority;</span>
+<span class="fc" id="L22">        this.status = &quot;PENDING&quot;;</span>
+<span class="fc" id="L23">        this.createdAt = LocalDateTime.now();</span>
+<span class="fc" id="L24">    }</span>
+
+    // Getters
+<span class="fc" id="L27">    public String getId() { return id; }</span>
+<span class="fc" id="L28">    public String getTitle() { return title; }</span>
+<span class="fc" id="L29">    public String getPriority() { return priority; }</span>
+<span class="fc" id="L30">    public String getStatus() { return status; }</span>
+<span class="fc" id="L31">    public LocalDateTime getCreatedAt() { return createdAt; }</span>
+<span class="fc" id="L32">    public LocalDateTime getCompletedAt() { return completedAt; }</span>
+
+    // Setters
+<span class="nc" id="L35">    public void setTitle(String title) { this.title = title; }</span>
+<span class="fc" id="L36">    public void setPriority(String priority) { this.priority = priority; }</span>
+<span class="nc" id="L37">    public void setStatus(String status) { this.status = status; }</span>
+
+    public void markComplete() {
+<span class="fc" id="L40">        this.status = &quot;DONE&quot;;</span>
+<span class="fc" id="L41">        this.completedAt = LocalDateTime.now();</span>
+<span class="fc" id="L42">    }</span>
+
+    public boolean isCompleted() {
+<span class="fc" id="L45">        return &quot;DONE&quot;.equals(this.status);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="fc" id="L50">        return String.format(&quot;Task{id='%s', title='%s', priority='%s', status='%s'}&quot;,</span>
+                id, title, priority, status);
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.10.202304240956</span></div></body></html>
